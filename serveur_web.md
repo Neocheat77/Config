@@ -18,6 +18,7 @@ Nous allons mettre en place un serveur web. Voici ce que nous allons installer :
 
 ### Configuration DNS domaine :
  `*` -> `A` -> `ip_vps`
+ 
  `www` -> `A` -> `ip_vps`
 
 ### Configuration Gmail :
