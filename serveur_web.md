@@ -50,8 +50,8 @@ service sshd restart
 ### 2 / Nginx
 2.1 - Vous allez maintenant installer Nginx sous ca version maximum disponible pour la distribution ***Debian 11***
 ```
-echo "deb https://nginx.org/packages/mainline/debian/ bullseye nginx" | sudo tee /etc/apt/sources.list
-echo "deb-src https://nginx.org/packages/mainline/debian bullseye nginx" | sudo tee /etc/apt/sources.list
+echo "deb https://nginx.org/packages/mainline/debian/ bullseye nginx" | sudo tee -a /etc/apt/sources.list
+echo "deb-src https://nginx.org/packages/mainline/debian bullseye nginx" | sudo tee -a /etc/apt/sources.list
 apt install gnupg    
 wget https://nginx.org/keys/nginx_signing.key 
 apt-key add nginx_signing.key
