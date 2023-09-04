@@ -1,9 +1,9 @@
 # Introduction
 Nous allons mettre en place un serveur web. Voici ce que nous allons installer :
-- Nginx 1.23.3 (max version 12/02/23 avec bullseye)
+- Nginx 1.25.2 (max version 04/09/23 avec bullseye)
 - PHP 8.0 fpm
 - MariaDb
-- PhpMyAdmin 5.1.1
+- PhpMyAdmin 5.2.1
 - Postfix avec relais Gmail
 - Certbot
 - Nodejs
@@ -132,9 +132,9 @@ systemctl reload nginx
 5.1 - Installez  maintenant PhpMyAdmin sur votre serveur.
 ```
 apt install unzip -y
-wget https://files.phpmyadmin.net/phpMyAdmin/5.1.1/phpMyAdmin-5.1.1-all-languages.zip
-unzip phpMyAdmin-5.1.1-all-languages.zip
-mv phpMyAdmin-5.1.1-all-languages phpmyadmin
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
+unzip phpMyAdmin-5.2.1-all-languages.zip
+mv phpMyAdmin-5.2.1-all-languages phpmyadmin
 mv phpmyadmin /usr/share/phpmyadmin
 ```
 5.2 - Editez une nouvelle fois votre fichier de configuration par défaut de Nginx
