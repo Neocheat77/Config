@@ -1,7 +1,7 @@
 # Introduction
 Nous allons mettre en place un serveur web. Voici ce que nous allons installer :
 - Nginx 1.25.2 (max version 04/09/23 avec bullseye)
-- PHP 8.0 fpm
+- PHP 8.2 fpm
 - MariaDb
 - PhpMyAdmin 5.2.1
 - Postfix avec relais Gmail
@@ -62,13 +62,13 @@ apt install nginx -y
 
 
 ### 3 / Php
-3.1 - Il faut a présent installé PHP, pour cette configuration nous avons choisi PHP8.0 fpm
+3.1 - Il faut a présent installé PHP, pour cette configuration nous avons choisi PHP8.2 fpm
 ```
 apt -y install lsb-release apt-transport-https ca-certificates
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list
 apt update && apt upgrade -y
-apt install php8.0 php8.0-fpm php8.0-mysqli php8.0-gd php8.0-mysql php8.0-cli php8.0-common php8.0-curl php8.0-opcache php8.0-imap php8.0-mbstring php-xml php8.0-xml -y
+apt install php8.2 php8.2-fpm php8.2-mysqli php8.2-gd php8.2-mysql php8.2-cli php8.2-common php8.2-curl php8.2-opcache php8.2-imap php8.2-mbstring php-xml php8.2-xml -y
 systemctl start nginx
 ```
 
@@ -79,10 +79,10 @@ mkdir /htdocs
 
 3.3 - Modifiez la configuration de PHP fpm 
 ```
-nano /etc/php/8.0/fpm/pool.d/www.conf
+nano /etc/php/8.2/fpm/pool.d/www.conf
 ```
 - Modifiez `user = nginx` -> `user = www-data`
-- Vérifiez : `listen = /run/php/php8.0-fpm.sock`
+- Vérifiez : `listen = /run/php/php8.2-fpm.sock`
 
 3.4 - Modifiez votre fichier de configuration principal de Nginx
 ```
@@ -103,16 +103,16 @@ nano /etc/nginx/conf.d/default.conf
   location ~ \.php$ {
       root           /htdocs;
       try_files      $uri =404;
-      fastcgi_pass   unix:/run/php/php8.0-fpm.sock;
+      fastcgi_pass   unix:/run/php/php8.2-fpm.sock;
       fastcgi_index  index.php;
       fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
       include        fastcgi_params;
   }
 ```
 
-3.6 - Enfin effectuez un redémarrage de PHP8.0 fpm et relancez de Nginx
+3.6 - Enfin effectuez un redémarrage de PHP8.2 fpm et relancez de Nginx
 ```
-service php8.0-fpm restart
+service php8.2-fpm restart
 systemctl reload nginx
 ```
 
@@ -152,7 +152,7 @@ nano /etc/nginx/conf.d/default.conf
       location ~ ^/phpmyadmin/(.+\.php)$ {
           try_files $uri =404;
           root /usr/share/;
-          fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+          fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
           fastcgi_index index.php;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
           include /etc/nginx/fastcgi_params;
@@ -185,7 +185,7 @@ nano /usr/share/phpmyadmin/config.inc.php
 
 5.5 - Modifiez maintenant votre php.ini afin d'augmenter certaine limite (pour éviter des erreurs sur des importations de db trop grosse)
 ```
-nano /etc/php/8.0/fpm/php.ini
+nano /etc/php/8.2/fpm/php.ini
 ```
 - Modifiez :  `memory_limit = 128M` -> `memory_limit = 254M`
 - Modifiez :  `post_max_size = 8M` -> `memory_limit = 50M`
