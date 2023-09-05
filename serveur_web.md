@@ -1,7 +1,7 @@
 # Introduction
 Nous allons mettre en place un serveur web. Voici ce que nous allons installer :
 - Nginx 1.25.2 (max version 04/09/23 avec bullseye)
-- PHP 8.2 fpm
+- PHP-FPM 8.2
 - MariaDb
 - PhpMyAdmin 5.2.1
 - Postfix avec relais Gmail
