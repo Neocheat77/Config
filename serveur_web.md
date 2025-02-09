@@ -188,7 +188,7 @@ nano /usr/share/phpmyadmin/config.inc.php
 nano /etc/php/8.2/fpm/php.ini
 ```
 - Modifiez :  `memory_limit = 128M` -> `memory_limit = 254M`
-- Modifiez :  `post_max_size = 8M` -> `memory_limit = 50M`
+- Modifiez :  `post_max_size = 8M` -> `post_max_size = 50M`
 - Modifiez :  `upload_max_filesize = 2M` -> `upload_max_filesize = 50M`
 
 5.6 - Editez votre fichier de configuration principal de Nginx
